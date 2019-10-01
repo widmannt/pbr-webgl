@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Physically Based Rendering on the GPU using Path Tracing</title>
+
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            min-width: 100%;
+            min-height: 100%;
+            display: flex;
+            flex-direction: row;
+            background: hsl(0, 0%, 98%);
+        }
+
+        .column {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-height: 100%;
+            flex-grow: 1;
+        }
+
+        #title {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: sans-serif;
+            font-size: 24pt;
+            color: hsl(0, 0%, 35%);
+        }
+
+        #applet {
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        #glCanvas {
+            display: block;
+            width: 60rem;
+            height: 45rem;
+            cursor: crosshair;
+        }
+
+        #statusbar {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            font-family: sans-serif;
+            font-size: 14pt;
+            line-height: 14pt;
+            color: white;
+            background-color: hsl(0, 0%, 35%);
+        }
+
+        #toolbar {
+            margin: auto;
+            display: flex;
+            align-items: flex-end;
+        }
+
+        #fillTop {
+            flex-grow: 1;
+            visibility: hidden;
+        }
+
+        #fillBottom {
+            flex-grow: 3;
+            visibility: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="centerColumn" class="column">
+        <div id="fillTop"></div>
+
+        <div id="title">Modeling and Simulation of Lenses</div>
+
+        <div id="applet">
+            <canvas id="glCanvas"></canvas>
+            <div id="statusbar">
+                <span></span>
+                <span id="sampleCounter">0</span>
+            </div>
+        </div>
+
+        <div id="toolbar">
+            <button id="rendererButton" type="button">Pause</button>
+            <button id="exportButton" type="button">Save image</button>
+        </div>
+
+        <div id="fillBottom"></div>
+    </div>
+
+    <script src="../webgl2-utils.js"></script>
+    <script src="webgl-sampler.js"></script>
+    <script src="../webgl-renderer.js"></script>
+    <script src="../path-tracer.js"></script>
+    <script src="../mouse-drag-helper.js"></script>
+    <script src="../main.js"></script>
+</body>
+
+</html>
