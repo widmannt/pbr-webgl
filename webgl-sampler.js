@@ -264,8 +264,8 @@ SamplerProgram.fragShaderSource = `
 
         if (tN > tF || tF < 0.0) return;
 
-        float t = tN < 0.0 ? tF : tN;
-        vec3 normal = -sign(r.direction)*step(t1.yzx, t1.xyz)*step(t1.zxy, t1.xyz); //FIXME: This is probably wrong when ray starts inside.
+        float t = (tN < 0.0) ? tF : tN;
+        vec3 normal = (tN < 0.0) ? step(t2, vec3(tF)) : -step(vec3(tN), t1);
 
         if (t < r.t) {
             r.t = t;
@@ -443,6 +443,8 @@ SamplerProgram.fragShaderSource = `
         intersectBox(vec3(-2.5, 0.0, 2.0), vec3(1.0, 3.0, 4.0), DIFFUSE(0.2, 0.2, 0.8), r, i);
         intersectBox(vec3(1.5, 1.0, 1.5), vec3(1.0, 1.0, 3.0), DIFFUSE(0.2, 0.2, 0.2), r, i);
         intersectObject(SPHERE(vec3(-1.25, 0.0, 0.75), 0.75, DIFFUSE(0.95, 0.95, 0.95)), r, i);
+
+        intersectBox(vec3(0.0, -3.0, 1.0), vec3(2.0, 1.0, 2.0), GLASS(1.5), r, i);
 
         return i;
     } // Scene is hard coded here.
